@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<aside class="sidebar">
+    <div class="profile-header">
+        <h1>{{ resume.name }}</h1>
+        <p class="subtitle">{{ resume.title }}</p>
+    </div>
+
+    <nav class="nav-links">
+        <a href="#about" class="active">Overview</a>
+        <a href="#experience">Experience</a>
+        <a href="#education">Education</a>
+        <a href="#skills">Skills</a>
+    </nav>
+
+    <div class="contact-info">
+        <h3>Contact</h3>
+        <p><i class="icon-mail"></i> {{ resume.contact.email }}</p>
+        <p><i class="icon-phone"></i> {{ resume.contact.phone }}</p>
+        <p><i class="icon-map"></i> {{ resume.contact.location }}</p>
+    </div>
+</aside>
+
+<main class="main-content">
+    <section id="about" class="card">
+        <h2>About Me</h2>
+        <p>{{ resume.about }}</p>
+    </section>
+
+    <div class="grid-container">
+        <section id="experience" class="card">
+            <h2>Experience</h2>
+            <div class="timeline">
+                {% for job in resume.experience %}
+                <div class="timeline-item">
+                    <h3>{{ job.role }}</h3>
+                    <p class="description">{{ job.description }}</p>
+                    <div class="tags">
+                        {% for skill in job.skills %}
+                        <span class="tag">{{ skill }}</span>
+                        {% endfor %}
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </section>
+
+        <section id="education" class="card">
+            <h2>Education</h2>
+            <ul class="list-none">
+                {% for edu in resume.education %}
+                <li class="list-item">
+                    <div class="list-header">
+                        <h3>{{ edu.institution }}</h3>
+                        <span class="date">{{ edu.year }}</span>
+                    </div>
+                    <p>{{ edu.degree }}</p>
+                </li>
+                {% endfor %}
+            </ul>
+        </section>
+    </div>
+
+    <section id="skills" class="card">
+        <h2>Skills & Languages</h2>
+        <div class="skills-grid">
+            {% for skill in resume.skills %}
+            <div class="skill-pill">{{ skill }}</div>
+            {% endfor %}
+        </div>
+    </section>
+</main>
+{% endblock %}
