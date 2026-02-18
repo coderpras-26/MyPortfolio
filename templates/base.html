@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ resume.name }} - Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+    <div class="dashboard-container">
+        {% block content %}{% endblock %}
+    </div>
+
+    <!-- Chat Widget -->
+    <button id="chat-toggle" title="Chat with AI Agent">💬</button>
+
+    <div id="chat-widget" class="hidden">
+        <div class="chat-header">
+            <h3>Ask about Prasana</h3>
+            <button id="close-chat">×</button>
+        </div>
+        <div id="chat-messages">
+            <div class="message bot">Hi! I'm an AI assistant. Ask me anything about Prasana's resume.</div>
+        </div>
+        <div class="chat-input-area">
+            <form id="chat-form">
+                <input type="text" id="chat-input" placeholder="Type your question..." autocomplete="off">
+                <button type="submit" class="send-btn">Send</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/chat.js') }}"></script>
+</body>
+
+</html>
